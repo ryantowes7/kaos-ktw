@@ -1,5 +1,4 @@
 import React, { useMemo, useState } from "react";
-import axios from "axios";
 import "@/App.css";
 import { ShoppingCart, User, MapPin, Phone, Shirt, Package, DollarSign, Send, CheckCircle, MessageCircle } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -9,9 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Toaster, toast } from "@/components/ui/sonner";
-
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API_URL = `${BACKEND_URL}/api`;
+import { supabase } from "@/lib/supabaseClient";
 
 const HARGA = {
   anakPendek: 50000,
@@ -66,11 +63,6 @@ export default function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!BACKEND_URL) {
-      toast.error("Konfigurasi backend belum ada (REACT_APP_BACKEND_URL).");
-      return;
-    }
-
     if (!formData.nama || !formData.no_hp || !formData.alamat) {
       toast.error("Mohon lengkapi semua data wajib.");
       return;
@@ -84,9 +76,9 @@ export default function App() {
     setLoading(true);
     try {
       const payload = {
-        nama: formData.nama,
-        no_hp: formData.no_hp,
-        alamat: formData.alamat,
+        nama: formData.nama.trim(),
+        no_hp: formData.no_hp.trim(),
+        alamat: formData.alamat.trim(),
         size_anak_pendek: enableAnakPendek ? sizeAnakPendek : {},
         size_anak_panjang: enableAnakPanjang ? sizeAnakPanjang : {},
         size_dewasa_pendek: enableDewasaPendek ? sizeDewasaPendek : {},
@@ -94,14 +86,24 @@ export default function App() {
         total_harga: totalHarga,
       };
 
-      const response = await axios.post(`${API_URL}/orders`, payload);
-      setOrderData(response.data);
+      const { data, error } = await supabase
+        .from('orders')
+        .insert([payload])
+        .select()
+        .single();
+
+      if (error) {
+        console.error("Error submitting order:", error);
+        toast.error(`Gagal mengirim pesanan: ${error.message}`);
+        return;
+      }
+
+      setOrderData(data);
       setOrderSuccess(true);
-      toast.success("Pesanan berhasil dikirim.");
+      toast.success("Pesanan berhasil dikirim!");
     } catch (error) {
       console.error("Error submitting order:", error);
-      const detail = error?.response?.data?.detail;
-      toast.error(typeof detail === "string" ? detail : "Gagal mengirim pesanan. Silakan coba lagi.");
+      toast.error("Gagal mengirim pesanan. Silakan coba lagi.");
     } finally {
       setLoading(false);
     }
@@ -113,11 +115,11 @@ export default function App() {
 
   const handleWhatsAppConfirm = () => {
     const message =
-      `Halo! Saya ${formData.nama} ingin konfirmasi pesanan Kaos Khatulistiwa Batch 1:\n\n` +
-      `Nama: ${formData.nama}\n` +
-      `No HP: ${formData.no_hp}\n` +
-      `Alamat: ${formData.alamat}\n\n` +
-      `Total: ${formatRupiah(totalHarga)}\n\n` +
+      `Halo! Saya ${formData.nama} ingin konfirmasi pesanan Kaos Khatulistiwa Batch 1:nn` +
+      `Nama: ${formData.nama}n` +
+      `No HP: ${formData.no_hp}n` +
+      `Alamat: ${formData.alamat}nn` +
+      `Total: ${formatRupiah(totalHarga)}nn` +
       "Terima kasih.";
 
     window.open(`https://wa.me/6285338538900?text=${encodeURIComponent(message)}`, "_blank");

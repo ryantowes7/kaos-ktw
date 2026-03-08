@@ -2,12 +2,20 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "@/index.css";
 import App from "@/App";
-import { Toaster } from "@/components/ui/sonner";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const ensureRootContainer = () => {
+  const existingRoot = document.getElementById("root");
+  if (existingRoot) return existingRoot;
+
+  const fallbackRoot = document.createElement("div");
+  fallbackRoot.id = "root";
+  document.body.appendChild(fallbackRoot);
+  return fallbackRoot;
+};
+
+const root = ReactDOM.createRoot(ensureRootContainer());
 root.render(
   <React.StrictMode>
     <App />
-    <Toaster />
   </React.StrictMode>,
 );

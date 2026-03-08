@@ -1,4 +1,4 @@
-"# 👕 Aplikasi Pemesanan Kaos \"Khatulistiwa\" Batch 1
+"# 👕 Aplikasi Pemesanan Kaos "Khatulistiwa" Batch 1
 
 Aplikasi web untuk mendata pemesanan kaos dengan form yang diisi langsung oleh konsumen. Data tersimpan otomatis ke database Supabase.
 
@@ -142,7 +142,7 @@ Health check endpoint
 **Response:**
 ```json
 {
-  \"message\": \"Kaos Khatulistiwa Order API\"
+  "message": "Kaos Khatulistiwa Order API"
 }
 ```
 
@@ -152,30 +152,30 @@ Create new order
 **Request Body:**
 ```json
 {
-  \"nama\": \"Budi Santoso\",
-  \"no_hp\": \"081234567890\",
-  \"alamat\": \"Jl. Merdeka No. 45, Jakarta\",
-  \"size_anak_pendek\": {\"M\": 5},
-  \"size_anak_panjang\": {},
-  \"size_dewasa_pendek\": {\"L\": 3, \"XL\": 2},
-  \"size_dewasa_panjang\": {\"XL\": 10},
-  \"total_harga\": 1850000
+  "nama": "Budi Santoso",
+  "no_hp": "081234567890",
+  "alamat": "Jl. Merdeka No. 45, Jakarta",
+  "size_anak_pendek": {"M": 5},
+  "size_anak_panjang": {},
+  "size_dewasa_pendek": {"L": 3, "XL": 2},
+  "size_dewasa_panjang": {"XL": 10},
+  "total_harga": 1850000
 }
 ```
 
 **Response:**
 ```json
 {
-  \"id\": \"uuid-here\",
-  \"nama\": \"Budi Santoso\",
-  \"no_hp\": \"081234567890\",
-  \"alamat\": \"Jl. Merdeka No. 45, Jakarta\",
-  \"size_anak_pendek\": {\"M\": 5},
-  \"size_anak_panjang\": {},
-  \"size_dewasa_pendek\": {\"L\": 3, \"XL\": 2},
-  \"size_dewasa_panjang\": {\"XL\": 10},
-  \"total_harga\": 1850000,
-  \"created_at\": \"2026-03-07T16:55:20.268605+00:00\"
+  "id": "uuid-here",
+  "nama": "Budi Santoso",
+  "no_hp": "081234567890",
+  "alamat": "Jl. Merdeka No. 45, Jakarta",
+  "size_anak_pendek": {"M": 5},
+  "size_anak_panjang": {},
+  "size_dewasa_pendek": {"L": 3, "XL": 2},
+  "size_dewasa_panjang": {"XL": 10},
+  "total_harga": 1850000,
+  "created_at": "2026-03-07T16:55:20.268605+00:00"
 }
 ```
 

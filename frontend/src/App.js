@@ -7,7 +7,7 @@ import { Textarea } from './components/ui/textarea';
 import { Button } from './components/ui/button';
 import { Checkbox } from './components/ui/checkbox';
 import { ShoppingCart, User, MapPin, Phone, Shirt, Package, DollarSign, Send, CheckCircle, MessageCircle } from 'lucide-react';
-import { toast } from 'sonner';
+import { toast } from './components/ui/sonner';
 import './App.css';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -119,11 +119,11 @@ function App() {
   };
 
   const handleWhatsAppConfirm = () => {
-    const message = `Halo! Saya ${formData.nama} ingin konfirmasi pesanan Kaos Khatulistiwa Batch 1:\n\n` +
-      `Nama: ${formData.nama}\n` +
-      `No HP: ${formData.no_hp}\n` +
-      `Alamat: ${formData.alamat}\n\n` +
-      `Total: Rp ${totalHarga.toLocaleString('id-ID')}\n\n` +
+    const message = `Halo! Saya ${formData.nama} ingin konfirmasi pesanan Kaos Khatulistiwa Batch 1:nn` +
+      `Nama: ${formData.nama}n` +
+      `No HP: ${formData.no_hp}n` +
+      `Alamat: ${formData.alamat}nn` +
+      `Total: Rp ${totalHarga.toLocaleString('id-ID')}nn` +
       `Terima kasih!`;
     
     const waUrl = `https://wa.me/6285338538900?text=${encodeURIComponent(message)}`;

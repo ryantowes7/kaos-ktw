@@ -342,6 +342,46 @@ export default function App() {
             </CardContent>
           </Card>
 
+          <Card className="shadow-lg border-2 border-gray-200" data-testid="size-chart-section">
+            <CardHeader className="bg-gradient-to-r from-purple-50 to-pink-50 border-b">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center">
+                  <Shirt className="text-white" size={22} />
+                </div>
+                <div>
+                  <CardTitle className="text-2xl font-bold text-gray-800">Panduan Ukuran</CardTitle>
+                  <CardDescription className="text-base">Lihat tabel ukuran untuk memilih size yang sesuai</CardDescription>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent className="pt-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-white rounded-lg overflow-hidden border-2 border-gray-200 hover:border-purple-400 transition-colors">
+                  <div className="bg-purple-100 px-4 py-2 border-b">
+                    <h3 className="text-sm font-bold text-purple-900 text-center">Size Chart Anak</h3>
+                  </div>
+                  <img 
+                    src="/size-chart-anak.jpeg" 
+                    alt="Size Chart Anak" 
+                    className="w-full h-auto object-contain" 
+                    data-testid="size-chart-anak-image"
+                  />
+                </div>
+                <div className="bg-white rounded-lg overflow-hidden border-2 border-gray-200 hover:border-pink-400 transition-colors">
+                  <div className="bg-pink-100 px-4 py-2 border-b">
+                    <h3 className="text-sm font-bold text-pink-900 text-center">Size Chart Dewasa</h3>
+                  </div>
+                  <img 
+                    src="/size-chart-dewasa.jpeg" 
+                    alt="Size Chart Dewasa" 
+                    className="w-full h-auto object-contain" 
+                    data-testid="size-chart-dewasa-image"
+                  />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
           <Card className="shadow-lg border-t-4 border-t-green-600" data-testid="size-anak-section">
             <CardHeader className="bg-gradient-to-r from-green-50 to-emerald-50 border-b">
               <div className="flex items-center gap-3">

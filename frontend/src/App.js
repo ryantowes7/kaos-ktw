@@ -220,7 +220,7 @@ function App() {
         <Card className="mb-6 overflow-hidden shadow-lg" data-testid="mockup-section">
           <CardContent className="p-0">
             <img 
-              src="/mockup-kaos.png" 
+              src="/mockup.png" 
               alt="Mockup Kaos Khatulistiwa" 
               className="w-full h-auto object-cover"
             />

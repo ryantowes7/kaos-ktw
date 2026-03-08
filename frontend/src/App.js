@@ -243,72 +243,6 @@ export default function App() {
           </CardContent>
         </Card>
 
-        <Card className="mb-6 shadow-xl border-2 border-emerald-200" data-testid="payment-info-section">
-          <CardHeader className="bg-gradient-to-r from-emerald-600 to-green-600 text-white">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
-                <CreditCard className="w-6 h-6" />
-              </div>
-              <div>
-                <CardTitle className="text-2xl font-bold">Informasi Pembayaran</CardTitle>
-                <CardDescription className="text-emerald-50">Transfer ke salah satu rekening berikut</CardDescription>
-              </div>
-            </div>
-          </CardHeader>
-          <CardContent className="pt-6">
-            <div className="grid md:grid-cols-2 gap-5">
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-5 border-2 border-blue-300 hover:shadow-lg transition-shadow" data-testid="bank-bri">
-                <div className="flex items-start gap-3 mb-4">
-                  <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Building2 className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-blue-900 mb-1">Bank BRI</h3>
-                    <p className="text-sm text-blue-700 font-medium">Bank Rakyat Indonesia</p>
-                  </div>
-                </div>
-                <div className="space-y-2 bg-white/70 rounded-lg p-4 border border-blue-200">
-                  <div>
-                    <p className="text-xs text-gray-600 font-semibold mb-1">Nomor Rekening:</p>
-                    <p className="text-lg font-bold text-gray-900 tracking-wide">002101026100533</p>
-                  </div>
-                  <div className="pt-2 border-t border-blue-200">
-                    <p className="text-xs text-gray-600 font-semibold mb-1">Atas Nama:</p>
-                    <p className="text-base font-bold text-gray-900">Wendri Muji Atmoko</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-xl p-5 border-2 border-indigo-300 hover:shadow-lg transition-shadow" data-testid="bank-bca">
-                <div className="flex items-start gap-3 mb-4">
-                  <div className="w-12 h-12 bg-indigo-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Building2 className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-indigo-900 mb-1">Bank BCA</h3>
-                    <p className="text-sm text-indigo-700 font-medium">Bank Central Asia</p>
-                  </div>
-                </div>
-                <div className="space-y-2 bg-white/70 rounded-lg p-4 border border-indigo-200">
-                  <div>
-                    <p className="text-xs text-gray-600 font-semibold mb-1">Nomor Rekening:</p>
-                    <p className="text-lg font-bold text-gray-900 tracking-wide">1210618089</p>
-                  </div>
-                  <div className="pt-2 border-t border-indigo-200">
-                    <p className="text-xs text-gray-600 font-semibold mb-1">Atas Nama:</p>
-                    <p className="text-base font-bold text-gray-900">Wendri Muji Atmoko</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="mt-5 bg-amber-50 border-l-4 border-amber-500 rounded-r-lg p-4">
-              <p className="text-sm text-amber-900">
-                <span className="font-bold">📌 Catatan:</span> Setelah melakukan transfer, mohon konfirmasi pembayaran melalui WhatsApp untuk proses verifikasi.
-              </p>
-            </div>
-          </CardContent>
-        </Card>
-
         <form onSubmit={handleSubmit} className="space-y-6" data-testid="order-form">
           <Card className="shadow-lg border-t-4 border-t-blue-600" data-testid="customer-data-section">
             <CardHeader className="bg-gradient-to-r from-blue-50 to-indigo-50 border-b">
@@ -473,6 +407,72 @@ export default function App() {
               <p className="text-base font-semibold text-gray-700 mb-3">Total yang harus dibayar:</p>
               <p className="text-5xl font-extrabold text-blue-600 mb-2" data-testid="total-harga">{formatRupiah(totalHarga)}</p>
               <p className="text-sm text-gray-500 mt-3">Pastikan nominal transfer sesuai dengan total di atas</p>
+            </CardContent>
+          </Card>
+
+          <Card className="shadow-xl border-2 border-emerald-200" data-testid="payment-info-section">
+            <CardHeader className="bg-gradient-to-r from-emerald-600 to-green-600 text-white">
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                  <CreditCard className="w-6 h-6" />
+                </div>
+                <div>
+                  <CardTitle className="text-2xl font-bold">Informasi Pembayaran</CardTitle>
+                  <CardDescription className="text-emerald-50">Transfer ke salah satu rekening berikut</CardDescription>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent className="pt-6">
+              <div className="grid md:grid-cols-2 gap-5">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-5 border-2 border-blue-300 hover:shadow-lg transition-shadow" data-testid="bank-bri">
+                  <div className="flex items-start gap-3 mb-4">
+                    <div className="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Building2 className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-blue-900 mb-1">Bank BRI</h3>
+                      <p className="text-sm text-blue-700 font-medium">Bank Rakyat Indonesia</p>
+                    </div>
+                  </div>
+                  <div className="space-y-2 bg-white/70 rounded-lg p-4 border border-blue-200">
+                    <div>
+                      <p className="text-xs text-gray-600 font-semibold mb-1">Nomor Rekening:</p>
+                      <p className="text-lg font-bold text-gray-900 tracking-wide">002101026100533</p>
+                    </div>
+                    <div className="pt-2 border-t border-blue-200">
+                      <p className="text-xs text-gray-600 font-semibold mb-1">Atas Nama:</p>
+                      <p className="text-base font-bold text-gray-900">Wendri Muji Atmoko</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-xl p-5 border-2 border-indigo-300 hover:shadow-lg transition-shadow" data-testid="bank-bca">
+                  <div className="flex items-start gap-3 mb-4">
+                    <div className="w-12 h-12 bg-indigo-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Building2 className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-indigo-900 mb-1">Bank BCA</h3>
+                      <p className="text-sm text-indigo-700 font-medium">Bank Central Asia</p>
+                    </div>
+                  </div>
+                  <div className="space-y-2 bg-white/70 rounded-lg p-4 border border-indigo-200">
+                    <div>
+                      <p className="text-xs text-gray-600 font-semibold mb-1">Nomor Rekening:</p>
+                      <p className="text-lg font-bold text-gray-900 tracking-wide">1210618089</p>
+                    </div>
+                    <div className="pt-2 border-t border-indigo-200">
+                      <p className="text-xs text-gray-600 font-semibold mb-1">Atas Nama:</p>
+                      <p className="text-base font-bold text-gray-900">Wendri Muji Atmoko</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-5 bg-amber-50 border-l-4 border-amber-500 rounded-r-lg p-4">
+                <p className="text-sm text-amber-900">
+                  <span className="font-bold">📌 Catatan:</span> Setelah melakukan transfer, mohon konfirmasi pembayaran melalui WhatsApp untuk proses verifikasi.
+                </p>
+              </div>
             </CardContent>
           </Card>
 

@@ -17,8 +17,8 @@ const HARGA = {
   dewasaPanjang: 110000,
 };
 
-const defaultAnak = { XS: 0, S: 0, M: 0, L: 0, XL: 0, XXL: 0 };
-const defaultDewasa = { S: 0, M: 0, L: 0, XL: 0, XXL: 0, XXXL: 0, "4XL": 0, "5XL": 0 };
+const defaultAnak = { XS: "", S: "", M: "", L: "", XL: "", XXL: "" };
+const defaultDewasa = { S: "", M: "", L: "", XL: "", XXL: "", XXXL: "", "4XL": "", "5XL": "" };
 
 const countTotalItems = (data) => Object.values(data).reduce((sum, val) => sum + Number(val || 0), 0);
 const formatRupiah = (amount) => new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", minimumFractionDigits: 0 }).format(amount);
@@ -110,7 +110,13 @@ export default function App() {
   };
 
   const handleSizeChange = (setter, current, key, value) => {
-    setter({ ...current, [key]: Math.max(0, parseInt(value, 10) || 0) });
+    // Jika value kosong, biarkan kosong. Jika ada value, pastikan minimal 0
+    if (value === "") {
+      setter({ ...current, [key]: "" });
+    } else {
+      const numValue = parseInt(value, 10);
+      setter({ ...current, [key]: isNaN(numValue) ? "" : Math.max(0, numValue) });
+    }
   };
 
   const handleWhatsAppConfirm = (phoneNumber, contactName) => {
@@ -335,7 +341,7 @@ export default function App() {
                 {enableAnakPendek && (
                   <div className="grid grid-cols-3 md:grid-cols-6 gap-3" data-testid="anak-pendek-grid">
                     {Object.keys(sizeAnakPendek).map((size) => (
-                      <div key={size}><Label className="text-xs text-center block mb-1 font-bold">{size}</Label><Input type="number" min="0" value={sizeAnakPendek[size]} onChange={(e) => handleSizeChange(setSizeAnakPendek, sizeAnakPendek, size, e.target.value)} className="text-center h-10" data-testid={`anak-pendek-${size.toLowerCase()}-input`} /></div>
+                      <div key={size}><Label className="text-xs text-center block mb-1 font-bold">{size}</Label><Input type="number" min="0" value={sizeAnakPendek[size]} onChange={(e) => handleSizeChange(setSizeAnakPendek, sizeAnakPendek, size, e.target.value)} placeholder="0" className="text-center h-10" data-testid={`anak-pendek-${size.toLowerCase()}-input`} /></div>
                     ))}
                   </div>
                 )}
@@ -348,7 +354,7 @@ export default function App() {
                 {enableAnakPanjang && (
                   <div className="grid grid-cols-3 md:grid-cols-6 gap-3" data-testid="anak-panjang-grid">
                     {Object.keys(sizeAnakPanjang).map((size) => (
-                      <div key={size}><Label className="text-xs text-center block mb-1 font-bold">{size}</Label><Input type="number" min="0" value={sizeAnakPanjang[size]} onChange={(e) => handleSizeChange(setSizeAnakPanjang, sizeAnakPanjang, size, e.target.value)} className="text-center h-10" data-testid={`anak-panjang-${size.toLowerCase()}-input`} /></div>
+                     <div key={size}><Label className="text-xs text-center block mb-1 font-bold">{size}</Label><Input type="number" min="0" value={sizeAnakPanjang[size]} onChange={(e) => handleSizeChange(setSizeAnakPanjang, sizeAnakPanjang, size, e.target.value)} placeholder="0" className="text-center h-10" data-testid={`anak-panjang-${size.toLowerCase()}-input`} /></div>
                     ))}
                   </div>
                 )}
@@ -375,7 +381,7 @@ export default function App() {
                 {enableDewasaPendek && (
                   <div className="grid grid-cols-4 md:grid-cols-8 gap-3" data-testid="dewasa-pendek-grid">
                     {Object.keys(sizeDewasaPendek).map((size) => (
-                      <div key={size}><Label className="text-xs text-center block mb-1 font-bold">{size}</Label><Input type="number" min="0" value={sizeDewasaPendek[size]} onChange={(e) => handleSizeChange(setSizeDewasaPendek, sizeDewasaPendek, size, e.target.value)} className="text-center h-10" data-testid={`dewasa-pendek-${size.toLowerCase()}-input`} /></div>
+                      <div key={size}><Label className="text-xs text-center block mb-1 font-bold">{size}</Label><Input type="number" min="0" value={sizeDewasaPendek[size]} onChange={(e) => handleSizeChange(setSizeDewasaPendek, sizeDewasaPendek, size, e.target.value)} placeholder="0" className="text-center h-10" data-testid={`dewasa-pendek-${size.toLowerCase()}-input`} /></div>
                     ))}
                   </div>
                 )}
@@ -388,7 +394,7 @@ export default function App() {
                 {enableDewasaPanjang && (
                   <div className="grid grid-cols-4 md:grid-cols-8 gap-3" data-testid="dewasa-panjang-grid">
                     {Object.keys(sizeDewasaPanjang).map((size) => (
-                      <div key={size}><Label className="text-xs text-center block mb-1 font-bold">{size}</Label><Input type="number" min="0" value={sizeDewasaPanjang[size]} onChange={(e) => handleSizeChange(setSizeDewasaPanjang, sizeDewasaPanjang, size, e.target.value)} className="text-center h-10" data-testid={`dewasa-panjang-${size.toLowerCase()}-input`} /></div>
+                      <div key={size}><Label className="text-xs text-center block mb-1 font-bold">{size}</Label><Input type="number" min="0" value={sizeDewasaPanjang[size]} onChange={(e) => handleSizeChange(setSizeDewasaPanjang, sizeDewasaPanjang, size, e.target.value)} placeholder="0" className="text-center h-10" data-testid={`dewasa-panjang-${size.toLowerCase()}-input`} /></div>
                     ))}
                   </div>
                 )}
